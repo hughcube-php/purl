@@ -283,6 +283,30 @@ class Url implements UriInterface
     }
 
     /**
+     * 是否存在query的key
+     *
+     * @return array
+     */
+    public function hasQueryKey($key)
+    {
+        $queryArray = $this->getQueryArray();
+
+        return array_key_exists($key, $queryArray);
+    }
+
+    /**
+     * 是否存在query的key
+     *
+     * @return array
+     */
+    public function getQueryValue($key, $default = null)
+    {
+        $queryArray = $this->getQueryArray();
+
+        return array_key_exists($key, $queryArray) ? $queryArray[$key] : $default;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getFragment()
