@@ -2,6 +2,12 @@
 
 namespace HughCube\PUrl\Exceptions;
 
-class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
+use InvalidArgumentException as Exception;
+
+/**
+ * Class InvalidArgumentException
+ * @package HughCube\PUrl\Exceptions
+ */
+class InvalidArgumentException extends Exception implements ExceptionInterface
 {
 }

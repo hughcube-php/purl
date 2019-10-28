@@ -89,12 +89,12 @@ class Url implements UriInterface
      */
     private function parsePsrUrl(UriInterface $url)
     {
-        $this->scheme = $url->getScheme();
-        $this->host = $url->getHost();
-        $this->port = $url->getPort();
-        $this->path = $url->getPath();
-        $this->query = $url->getQuery();
-        $this->fragment = $url->getFragment();
+        $this->scheme = (null == ($scheme = $url->getScheme())) ? null : $scheme;
+        $this->host = (null == ($host = $url->getHost())) ? null : $host;
+        $this->port = (null == ($port = $url->getPort())) ? null : $port;
+        $this->path = (null == ($path = $url->getPath())) ? null : $path;
+        $this->query = (null == ($query = $url->getQuery())) ? null : $query;
+        $this->fragment = (null == ($fragment = $url->getFragment())) ? null : $fragment;
 
         $userInfo = $this->getUserInfo();
         $userInfo = explode(':', $userInfo);
