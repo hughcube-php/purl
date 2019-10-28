@@ -89,17 +89,17 @@ class Url implements UriInterface
      */
     private function parsePsrUrl(UriInterface $url)
     {
-        $this->scheme = (null == ($scheme = $url->getScheme())) ? null : $scheme;
-        $this->host = (null == ($host = $url->getHost())) ? null : $host;
-        $this->port = (null == ($port = $url->getPort())) ? null : $port;
-        $this->path = (null == ($path = $url->getPath())) ? null : $path;
-        $this->query = (null == ($query = $url->getQuery())) ? null : $query;
-        $this->fragment = (null == ($fragment = $url->getFragment())) ? null : $fragment;
+        $this->scheme = (null == ($_ = $url->getScheme())) ? null : $_;
+        $this->host = (null == ($_ = $url->getHost())) ? null : $_;
+        $this->port = (null == ($_ = $url->getPort())) ? null : $_;
+        $this->path = (null == ($_ = $url->getPath())) ? null : $_;
+        $this->query = (null == ($_ = $url->getQuery())) ? null : $_;
+        $this->fragment = (null == ($_ = $url->getFragment())) ? null : $_;
 
-        $userInfo = $this->getUserInfo();
-        $userInfo = explode(':', $userInfo);
-        $this->user = (is_array($userInfo) && isset($userInfo[0])) ? $userInfo[0] : null;
-        $this->pass = (is_array($userInfo) && isset($userInfo[1])) ? $userInfo[1] : null;
+        $user = $this->getUserInfo();
+        $user = explode(':', $user);
+        $this->user = (is_array($user) && isset($user[0])) ? $user[0] : null;
+        $this->pass = (is_array($user) && isset($user[1])) ? $user[1] : null;
     }
 
     /**
@@ -495,7 +495,8 @@ class Url implements UriInterface
             return false;
         }
 
-        return !isset($this->schemes[$this->scheme]) || $this->port !== $this->schemes[$this->scheme];
+        return !isset($this->schemes[$this->scheme])
+            || $this->port !== $this->schemes[$this->scheme];
     }
 
     /**
