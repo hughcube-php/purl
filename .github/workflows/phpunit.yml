@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP PHPUnit
 
 on: [push]
 
@@ -20,4 +20,4 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Run test suite
-      run: composer run-script test
+      run: composer run-script test1111111111111111
