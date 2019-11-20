@@ -19,10 +19,10 @@ class UrlTest extends TestCase
 
     public function testBadStringUrl()
     {
+        $exception = null;
         try {
             Url::instance('php.net');
         } catch (\Throwable $exception) {
-            $exception = null;
         }
 
         $this->assertInstanceOf(ExceptionInterface::class, $exception);
