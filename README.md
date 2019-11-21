@@ -26,23 +26,11 @@
     <a href="https://packagist.org/packages/hughcube/purl">
         <img src="https://poser.pugx.org/hughcube/purl/downloads" alt="Total Downloads">
     </a>
-    <a href="https://travis-ci.org/Maatwebsite/Laravel-Excel">
-        <img src="https://img.shields.io/badge/license-MIT-428f7e.svg" alt="Build Status">
-    </a>
     <a href="https://github.com/hughcube/purl/blob/master/LICENSE">
-        <img src="https://travis-ci.org/Maatwebsite/Laravel-Excel.svg?branch=3.1" alt="License">
+        <img src="https://img.shields.io/badge/license-MIT-428f7e.svg" alt="License">
     </a>
     <a href="https://packagist.org/packages/hughcube/purl">
         <img src="https://poser.pugx.org/hughcube/purl/v/unstable" alt="Latest Unstable Version">
-    </a>
-    <a href="https://packagist.org/packages/hughcube/purl">
-        <img src="https://poser.pugx.org/hughcube/purl/composerlock" alt="composer.lock available">
-    </a>
-    <a href="https://packagist.org/packages/hughcube/purl">
-        <img src="https://poser.pugx.org/hughcube/purl/composerlock" alt="composer.lock available">
-    </a>
-    <a href="https://packagist.org/packages/hughcube/purl">
-        <img src="https://poser.pugx.org/hughcube/purl/composerlock" alt="composer.lock available">
     </a>
     <a href="https://packagist.org/packages/hughcube/purl">
         <img src="https://poser.pugx.org/hughcube/purl/composerlock" alt="composer.lock available">
