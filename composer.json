@@ -29,7 +29,7 @@
   },
   "scripts": {
     "test": "phpunit --verbose",
-    "PHPStan": "phpstan analyse --no-progress src/",
+    "PHPStan": "phpstan analyse src/",
     "check-style": "phpcs -p --standard=PSR2 src/",
     "fix-style": "phpcbf -p --standard=PSR2 src/"
   },
