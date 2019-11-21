@@ -3,27 +3,23 @@ name: PHPCS
 on: [push]
 
 jobs:
-build:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Check PHP Version
+                run: php -v
 
-    runs-on: ubuntu-latest
+            -   name: Check Composer Version
+                run: composer -V
 
-    steps:
-        -   uses: actions/checkout@v1
+            -   name: Check PHP Extensions
+                run: php -m
 
-        -   name: Check PHP Version
-            run: php -v
+            -   name: Validate composer.json and composer.lock
+                run: composer validate
 
-        -   name: Check Composer Version
-            run: composer -V
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress --no-suggest
 
-        -   name: Check PHP Extensions
-            run: php -m
-
-        -   name: Validate composer.json and composer.lock
-            run: composer validate
-
-        -   name: Install dependencies
-            run: composer install --prefer-dist --no-progress --no-suggest
-
-        -   name: Run check-style
-            run: composer run-script check-style
+            -   name: Run check-style
+                run: composer run-script check-style
