@@ -8,7 +8,7 @@ use Psr\Http\Message\UriInterface;
 class Url implements UriInterface
 {
     private $schemes = [
-        'http' => 80,
+        'http'  => 80,
         'https' => 443,
     ];
 
@@ -23,7 +23,7 @@ class Url implements UriInterface
     private $host;
 
     /**
-     * @var integer|null url port
+     * @var int|null url port
      */
     private $port;
 
@@ -53,9 +53,10 @@ class Url implements UriInterface
     private $fragment;
 
     /**
-     * 获取实例
+     * 获取实例.
      *
      * @param null|UriInterface $url
+     *
      * @return static
      */
     public static function instance($url = null)
@@ -65,6 +66,7 @@ class Url implements UriInterface
 
     /**
      * Url constructor.
+     *
      * @param null $url
      */
     protected function __construct($url = null)
@@ -83,7 +85,7 @@ class Url implements UriInterface
     }
 
     /**
-     * 解析 Psr 标准库的url
+     * 解析 Psr 标准库的url.
      *
      * @param UriInterface $url
      */
@@ -103,7 +105,7 @@ class Url implements UriInterface
     }
 
     /**
-     * 解析字符串url
+     * 解析字符串url.
      *
      * @param $url
      */
@@ -118,7 +120,7 @@ class Url implements UriInterface
     }
 
     /**
-     * 解析数组url
+     * 解析数组url.
      *
      * @param $parts
      */
@@ -135,9 +137,10 @@ class Url implements UriInterface
     }
 
     /**
-     * 填充 Psr 标准库的url
+     * 填充 Psr 标准库的url.
      *
      * @param UriInterface $url
+     *
      * @return UriInterface
      */
     public function fillPsrUri(UriInterface $url)
@@ -152,7 +155,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getScheme()
     {
@@ -160,7 +163,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getAuthority()
     {
@@ -183,7 +186,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getUserInfo()
     {
@@ -201,7 +204,7 @@ class Url implements UriInterface
     }
 
     /**
-     * 获取 url user
+     * 获取 url user.
      *
      * @return string
      */
@@ -211,7 +214,7 @@ class Url implements UriInterface
     }
 
     /**
-     * 获取 url pass
+     * 获取 url pass.
      *
      * @return string
      */
@@ -221,7 +224,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getHost()
     {
@@ -229,7 +232,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getPort()
     {
@@ -239,14 +242,14 @@ class Url implements UriInterface
 
         $scheme = $this->getScheme();
         if (empty($scheme)) {
-            return null;
+            return;
         }
 
         return isset($this->schemes[$scheme]) ? $this->schemes[$scheme] : null;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getPath()
     {
@@ -258,7 +261,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getQuery()
     {
@@ -266,7 +269,7 @@ class Url implements UriInterface
     }
 
     /**
-     * 获取query数组
+     * 获取query数组.
      *
      * @return array
      */
@@ -283,7 +286,7 @@ class Url implements UriInterface
     }
 
     /**
-     * 是否存在query的key
+     * 是否存在query的key.
      *
      * @return array
      */
@@ -295,7 +298,7 @@ class Url implements UriInterface
     }
 
     /**
-     * 是否存在query的key
+     * 是否存在query的key.
      *
      * @return array
      */
@@ -307,7 +310,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getFragment()
     {
@@ -352,7 +355,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function withScheme($scheme)
     {
@@ -363,7 +366,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function withUserInfo($user, $password = null)
     {
@@ -375,7 +378,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function withHost($host)
     {
@@ -386,7 +389,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function withPort($port)
     {
@@ -397,7 +400,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function withPath($path)
     {
@@ -408,7 +411,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function withQuery($query)
     {
@@ -422,6 +425,7 @@ class Url implements UriInterface
      * Return an instance with the specified query array.
      *
      * @param array $queryArray
+     *
      * @return static
      */
     public function withQueryArray(array $queryArray)
@@ -433,6 +437,7 @@ class Url implements UriInterface
      * Create a new URI with a specific query string value removed.
      *
      * @param $key
+     *
      * @return static
      */
     public function withoutQueryValue($key)
@@ -449,8 +454,9 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value.
      *
-     * @param string $key
-     * @param string|integer $value
+     * @param string     $key
+     * @param string|int $value
+     *
      * @return static
      */
     public function withQueryValue($key, $value)
@@ -462,7 +468,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function withFragment($fragment)
     {
@@ -473,7 +479,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __toString()
     {
@@ -500,9 +506,10 @@ class Url implements UriInterface
     }
 
     /**
-     * is url string
+     * is url string.
      *
      * @param $url
+     *
      * @return bool
      */
     public static function isUrlString($url)

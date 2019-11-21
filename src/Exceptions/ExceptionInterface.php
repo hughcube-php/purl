@@ -3,8 +3,7 @@
 namespace HughCube\PUrl\Exceptions;
 
 /**
- * Interface ExceptionInterface
- * @package HughCube\PUrl\Exceptions
+ * Interface ExceptionInterface.
  */
 interface ExceptionInterface
 {

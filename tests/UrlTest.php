@@ -20,6 +20,7 @@ class UrlTest extends TestCase
     public function testBadStringUrl()
     {
         $exception = null;
+
         try {
             Url::instance('php.net');
         } catch (\Exception $exception) {
@@ -92,7 +93,7 @@ class UrlTest extends TestCase
         foreach ([
                      Url::instance($string),
                      Url::instance(Url::instance($string)),
-                     Url::instance(parse_url(Url::instance($string)->toString()))
+                     Url::instance(parse_url(Url::instance($string)->toString())),
                  ] as $url
         ) {
             $this->assertEquals($string, $url->toString());
@@ -119,39 +120,39 @@ class UrlTest extends TestCase
     {
         return [
             [
-                'url' => 'https://www.google.com/search?q=test&oq=test&sourceid=chrome&ie=UTF-8',
-                'scheme' => 'https',
-                'authority' => 'www.google.com',
-                'userInfo' => '',
-                'user' => '',
-                'pass' => '',
-                'host' => 'www.google.com',
-                'port' => 443,
-                'path' => '/search',
-                'query' => 'q=test&oq=test&sourceid=chrome&ie=UTF-8',
+                'url'        => 'https://www.google.com/search?q=test&oq=test&sourceid=chrome&ie=UTF-8',
+                'scheme'     => 'https',
+                'authority'  => 'www.google.com',
+                'userInfo'   => '',
+                'user'       => '',
+                'pass'       => '',
+                'host'       => 'www.google.com',
+                'port'       => 443,
+                'path'       => '/search',
+                'query'      => 'q=test&oq=test&sourceid=chrome&ie=UTF-8',
                 'queryArray' => ['q' => 'test', 'oq' => 'test', 'sourceid' => 'chrome', 'ie' => 'UTF-8'],
-                'fragment' => '',
+                'fragment'   => '',
             ],
             [
-                'url' => 'https://www.google.com/search?q=%E4%BD%A0%E5%A5%BD%E5%91%80&oq=%E4%BD%A0%E5%A5%BD%E5%91%80&aqs=chrome..69i57j0l5.4993j0j7&sourceid=chrome&ie=UTF-8#test',
-                'scheme' => 'https',
-                'authority' => 'www.google.com',
-                'userInfo' => '',
-                'user' => '',
-                'pass' => '',
-                'host' => 'www.google.com',
-                'port' => 443,
-                'path' => '/search',
-                'query' => 'q=%E4%BD%A0%E5%A5%BD%E5%91%80&oq=%E4%BD%A0%E5%A5%BD%E5%91%80&aqs=chrome..69i57j0l5.4993j0j7&sourceid=chrome&ie=UTF-8',
+                'url'        => 'https://www.google.com/search?q=%E4%BD%A0%E5%A5%BD%E5%91%80&oq=%E4%BD%A0%E5%A5%BD%E5%91%80&aqs=chrome..69i57j0l5.4993j0j7&sourceid=chrome&ie=UTF-8#test',
+                'scheme'     => 'https',
+                'authority'  => 'www.google.com',
+                'userInfo'   => '',
+                'user'       => '',
+                'pass'       => '',
+                'host'       => 'www.google.com',
+                'port'       => 443,
+                'path'       => '/search',
+                'query'      => 'q=%E4%BD%A0%E5%A5%BD%E5%91%80&oq=%E4%BD%A0%E5%A5%BD%E5%91%80&aqs=chrome..69i57j0l5.4993j0j7&sourceid=chrome&ie=UTF-8',
                 'queryArray' => [
-                    'q' => '你好呀',
-                    'oq' => '你好呀',
-                    'aqs' => 'chrome..69i57j0l5.4993j0j7',
+                    'q'        => '你好呀',
+                    'oq'       => '你好呀',
+                    'aqs'      => 'chrome..69i57j0l5.4993j0j7',
                     'sourceid' => 'chrome',
-                    'ie' => 'UTF-8'
+                    'ie'       => 'UTF-8',
                 ],
                 'fragment' => 'test',
-            ]
+            ],
         ];
     }
 }
