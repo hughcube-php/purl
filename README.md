@@ -1,7 +1,7 @@
 <h1 align="center">PHP Url Package</h1>
 
 
-<p align="center">
+<p>
     <a href="https://github.com/hughcube/purl">
         <img src="https://github.com/hughcube/purl/workflows/PHPUnit/badge.svg" alt="PHPUnit Actions status">
     </a>
