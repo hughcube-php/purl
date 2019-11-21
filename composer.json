@@ -28,7 +28,7 @@
     }
   },
   "scripts": {
-    "test": "phpunit --verbose",
+    "test": "phpunit --verbose --coverage-clover=coverage.clover",
     "check-style": "phpcs -p --standard=PSR2 src/",
     "fix-style": "phpcbf -p --standard=PSR2 src/"
   },
