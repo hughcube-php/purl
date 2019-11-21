@@ -3,10 +3,10 @@
 
 <p>
     <a href="https://github.com/hughcube/purl">
-        <img src="https://github.com/hughcube/purl/workflows/PHPUnit/badge.svg" alt="PHPUnit Actions status">
+        <img src="https://github.com/hughcube/purl/workflows/Test/badge.svg" alt="Test Actions status">
     </a>
     <a href="https://github.com/hughcube/purl">
-        <img src="https://github.com/hughcube/purl/workflows/PHPCS/badge.svg" alt="PHPCS Actions status">
+        <img src="https://github.com/hughcube/purl/workflows/Lint/badge.svg" alt="Lint Actions status">
     </a>
     <a href="https://styleci.io/repos/217659566">
         <img src="https://github.styleci.io/repos/217659566/shield?branch=master" alt="StyleCI">
@@ -16,6 +16,9 @@
     </a>
     <a href="https://scrutinizer-ci.com/g/hughcube/purl/?branch=master">
         <img src="https://scrutinizer-ci.com/g/hughcube/purl/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality">
+    </a> 
+    <a href="https://scrutinizer-ci.com/g/hughcube/purl/?branch=master">
+        <img src="https://scrutinizer-ci.com/g/hughcube/purl/badges/code-intelligence.svg?b=master" alt="Code Intelligence Status">
     </a>        
     <a href="#tada-php-support">
         <img src="https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg" alt="PHP Versions Supported">

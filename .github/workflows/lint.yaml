@@ -1,6 +1,6 @@
-name: PHPCS
+name: Lint
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -24,4 +24,10 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run check-style
-        run: composer run-script check-style
+          run: composer run-script check-style
+
+      - name: Run PHPStan
+          run: composer run-script PHPStan
+
+      - name: PHP-CS-Fxier
+          run: composer run-script fix-style
