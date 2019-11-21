@@ -5,7 +5,7 @@
     <a href="https://github.com/hughcube/purl/actions?query=workflow%3ATest">
         <img src="https://github.com/hughcube/purl/workflows/Test/badge.svg" alt="Test Actions status">
     </a>
-    <a href="https://github.com/hughcube/purl/actions?query=workflow%3ALine">
+    <a href="https://github.com/hughcube/purl/actions?query=workflow%3ALint">
         <img src="https://github.com/hughcube/purl/workflows/Lint/badge.svg" alt="Lint Actions status">
     </a>
     <a href="https://styleci.io/repos/217659566">
