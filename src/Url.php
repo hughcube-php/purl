@@ -8,7 +8,7 @@ use Psr\Http\Message\UriInterface;
 class Url implements UriInterface
 {
     private $schemes = [
-        'http'  => 80,
+        'http' => 80,
         'https' => 443,
     ];
 
@@ -67,7 +67,7 @@ class Url implements UriInterface
     /**
      * Url constructor.
      *
-     * @param null $url
+     * @param null|string|array|UriInterface $url
      */
     protected function __construct($url = null)
     {
@@ -91,12 +91,12 @@ class Url implements UriInterface
      */
     private function parsePsrUrl(UriInterface $url)
     {
-        $this->scheme = (null == ($_ = $url->getScheme())) ? null : $_;
-        $this->host = (null == ($_ = $url->getHost())) ? null : $_;
-        $this->port = (null == ($_ = $url->getPort())) ? null : $_;
-        $this->path = (null == ($_ = $url->getPath())) ? null : $_;
-        $this->query = (null == ($_ = $url->getQuery())) ? null : $_;
-        $this->fragment = (null == ($_ = $url->getFragment())) ? null : $_;
+        $this->scheme = empty($scheme = $url->getScheme()) ? null : $scheme;
+        $this->host = empty($host = $url->getHost()) ? null : $host;
+        $this->port = empty($port = $url->getPort()) ? null : $port;
+        $this->path = empty($path = $url->getPath()) ? null : $path;
+        $this->query = empty($query = $url->getQuery()) ? null : $query;
+        $this->fragment = empty($fragment = $url->getFragment()) ? null : $fragment;
 
         $user = $this->getUserInfo();
         $user = explode(':', $user);
@@ -454,7 +454,7 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value.
      *
-     * @param string     $key
+     * @param string $key
      * @param string|int $value
      *
      * @return static

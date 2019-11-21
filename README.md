@@ -20,7 +20,7 @@
     <a href="https://scrutinizer-ci.com/g/hughcube/purl/?branch=master">
         <img src="https://scrutinizer-ci.com/g/hughcube/purl/badges/code-intelligence.svg?b=master" alt="Code Intelligence Status">
     </a>        
-    <a href="#tada-php-support">
+    <a href="https://github.com/hughcube/purl">
         <img src="https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg" alt="PHP Versions Supported">
     </a>
     <a href="https://packagist.org/packages/hughcube/purl">
@@ -45,33 +45,3 @@
 ```shell
 $ composer require hughcube/purl -vvv
 ```
-
-## :tada: PHP Support
-
-|PHP Version|Stability|Release Support|
-|--- |--- |--- |
-|5.6|`Stable`|`End of life`|
-|7.0|`Stable`|`End of life`|
-|7.1|`Stable`|`Security fixes only`|
-|7.2|`Stable`|`Active`|
-|7.3|`Stable`|`Active`|
-|7.4|`RC4`/`RC6`|`Active`|
-
-
-## Usage
-
-TODO
-
-## Contributing
-
-You can contribute in one of three ways:
-
-1. File bug reports using the [issue tracker](https://github.com/hughcube/purl/issues).
-2. Answer questions or fix bugs on the [issue tracker](https://github.com/hughcube/purl/issues).
-3. Contribute new features or update the wiki.
-
-_The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
-
-## License
-
-MIT
