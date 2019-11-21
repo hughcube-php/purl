@@ -22,6 +22,7 @@ class UrlTest extends TestCase
         $exception = null;
         try {
             Url::instance('php.net');
+        } catch (\Exception $exception) {
         } catch (\Throwable $exception) {
         }
 
