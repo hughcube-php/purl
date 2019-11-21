@@ -8,7 +8,7 @@ use Psr\Http\Message\UriInterface;
 class Url implements UriInterface
 {
     private $schemes = [
-        'http' => 80,
+        'http'  => 80,
         'https' => 443,
     ];
 
@@ -454,7 +454,7 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value.
      *
-     * @param string $key
+     * @param string     $key
      * @param string|int $value
      *
      * @return static
