@@ -9,10 +9,10 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: System Setting
-          run: |
-            php -v
-            composer -V
-            php -m
+        run: |
+          php -v
+          composer -V
+          php -m
 
       - name: Validate composer.json and composer.lock
         run: composer validate
