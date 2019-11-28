@@ -17,7 +17,6 @@ jobs:
 
       - name: Setup PHP
         uses: shivammathur/setup-php@master
-
         with:
           php-version: ${{ matrix.php-versions }}
           extension-csv: mbstring, xdebug #optional, setup extensions
@@ -25,14 +24,11 @@ jobs:
           coverage: xdebug #optional, setup coverage driver
           pecl: true #optional, setup PECL
 
-      - name: Check PHP Version
-        run: php -v
-
-      - name: Check Composer Version
-        run: composer -V
-
-      - name: Check PHP Extensions
-        run: php -m
+      - name: System Setting
+          run: |
+            php -v
+            composer -V
+            php -m
 
       - name: Validate composer.json and composer.lock
         run: composer validate
