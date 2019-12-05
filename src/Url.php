@@ -11,7 +11,7 @@ class Url implements UriInterface
      * @var int[]
      */
     private $schemes = [
-        'http' => 80,
+        'http'  => 80,
         'https' => 443,
     ];
 
@@ -253,6 +253,7 @@ class Url implements UriInterface
         }
 
         $scheme = $this->getScheme();
+
         return isset($this->schemes[$scheme]) ? $this->schemes[$scheme] : null;
     }
 
@@ -311,7 +312,7 @@ class Url implements UriInterface
      * 是否存在query的key.
      *
      * @param string $key
-     * @param mixed $default
+     * @param mixed  $default
      *
      * @return array|string
      */
@@ -467,7 +468,7 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value.
      *
-     * @param string $key
+     * @param string     $key
      * @param string|int $value
      *
      * @return static
