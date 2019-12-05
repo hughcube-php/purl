@@ -8,10 +8,10 @@ use Psr\Http\Message\UriInterface;
 class Url implements UriInterface
 {
     /**
-     * @var integer[]
+     * @var int[]
      */
     private $schemes = [
-        'http' => 80,
+        'http'  => 80,
         'https' => 443,
     ];
 
@@ -130,7 +130,7 @@ class Url implements UriInterface
     /**
      * 解析数组url.
      *
-     * @param string[]|integer[] $parts
+     * @param string[]|int[] $parts
      *
      * @return $this
      */
@@ -254,7 +254,7 @@ class Url implements UriInterface
 
         $scheme = $this->getScheme();
         if (empty($scheme)) {
-            return null;
+            return;
         }
 
         return isset($this->schemes[$scheme]) ? $this->schemes[$scheme] : null;
@@ -301,6 +301,7 @@ class Url implements UriInterface
      * 是否存在query的key.
      *
      * @param string $key
+     *
      * @return bool
      */
     public function hasQueryKey($key)
@@ -314,7 +315,7 @@ class Url implements UriInterface
      * 是否存在query的key.
      *
      * @param string $key
-     * @param mixed $default
+     * @param mixed  $default
      *
      * @return array|string
      */
@@ -452,7 +453,7 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value removed.
      *
-     * @param string|integer $key
+     * @param string|int $key
      *
      * @return static
      */
@@ -470,7 +471,7 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value.
      *
-     * @param string $key
+     * @param string     $key
      * @param string|int $value
      *
      * @return static
