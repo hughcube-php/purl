@@ -39,5 +39,5 @@ jobs:
       - name: Run PHPUnit
         run: |
           composer run-script test
-          wget https://scrutinizer-ci.com/ocular.phar
+          curl -o ocular.phar https://scrutinizer-ci.com/ocular.phar
           php ocular.phar code-coverage:upload --format=php-clover coverage.clover
