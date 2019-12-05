@@ -7,8 +7,11 @@ use Psr\Http\Message\UriInterface;
 
 class Url implements UriInterface
 {
+    /**
+     * @var integer[]
+     */
     private $schemes = [
-        'http'  => 80,
+        'http' => 80,
         'https' => 443,
     ];
 
@@ -67,14 +70,10 @@ class Url implements UriInterface
     /**
      * Url constructor.
      *
-     * @param null|string|array|UriInterface $url
+     * @param null|string|string[]|UriInterface $url
      */
-    protected function __construct($url = null)
+    final protected function __construct($url = null)
     {
-        if (null === $url) {
-            return;
-        }
-
         if ($url instanceof UriInterface) {
             $this->parsePsrUrl($url);
         } elseif (is_string($url)) {
@@ -88,6 +87,8 @@ class Url implements UriInterface
      * 解析 Psr 标准库的url.
      *
      * @param UriInterface $url
+     *
+     * @return $this
      */
     private function parsePsrUrl(UriInterface $url)
     {
@@ -102,12 +103,16 @@ class Url implements UriInterface
         $user = explode(':', $user);
         $this->user = (is_array($user) && isset($user[0])) ? $user[0] : null;
         $this->pass = (is_array($user) && isset($user[1])) ? $user[1] : null;
+
+        return $this;
     }
 
     /**
      * 解析字符串url.
      *
-     * @param $url
+     * @param string $url
+     *
+     * @return $this
      */
     private function parseStringUrl($url)
     {
@@ -115,16 +120,21 @@ class Url implements UriInterface
             throw new InvalidArgumentException('the parameter must be a url');
         }
 
+        /** @var string[] $parts */
         $parts = parse_url($url);
         $this->parseArrayUrl($parts);
+
+        return $this;
     }
 
     /**
      * 解析数组url.
      *
-     * @param $parts
+     * @param string[]|integer[] $parts
+     *
+     * @return $this
      */
-    private function parseArrayUrl($parts)
+    private function parseArrayUrl(array $parts)
     {
         $this->scheme = isset($parts['scheme']) ? $parts['scheme'] : null;
         $this->host = isset($parts['host']) ? $parts['host'] : null;
@@ -134,6 +144,8 @@ class Url implements UriInterface
         $this->path = isset($parts['path']) ? $parts['path'] : null;
         $this->query = isset($parts['query']) ? $parts['query'] : null;
         $this->fragment = isset($parts['fragment']) ? $parts['fragment'] : null;
+
+        return $this;
     }
 
     /**
@@ -242,7 +254,7 @@ class Url implements UriInterface
 
         $scheme = $this->getScheme();
         if (empty($scheme)) {
-            return;
+            return null;
         }
 
         return isset($this->schemes[$scheme]) ? $this->schemes[$scheme] : null;
@@ -288,7 +300,8 @@ class Url implements UriInterface
     /**
      * 是否存在query的key.
      *
-     * @return array
+     * @param string $key
+     * @return bool
      */
     public function hasQueryKey($key)
     {
@@ -300,7 +313,10 @@ class Url implements UriInterface
     /**
      * 是否存在query的key.
      *
-     * @return array
+     * @param string $key
+     * @param mixed $default
+     *
+     * @return array|string
      */
     public function getQueryValue($key, $default = null)
     {
@@ -436,7 +452,7 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value removed.
      *
-     * @param $key
+     * @param string|integer $key
      *
      * @return static
      */
@@ -454,7 +470,7 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value.
      *
-     * @param string     $key
+     * @param string $key
      * @param string|int $value
      *
      * @return static
@@ -508,7 +524,7 @@ class Url implements UriInterface
     /**
      * is url string.
      *
-     * @param $url
+     * @param mixed $url
      *
      * @return bool
      */
