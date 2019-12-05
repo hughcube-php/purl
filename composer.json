@@ -29,9 +29,9 @@
   },
   "scripts": {
     "test": "phpunit --verbose",
-    "phpstan": "phpstan analyse",
-    "check-style": "phpcs -p --standard=PSR2 src/",
-    "fix-style": "phpcbf -p --standard=PSR2 src/"
+    "phpstan": "phpstan analyse -vvv",
+    "check-style": "phpcs -p --standard=PSR2 src/ -v",
+    "fix-style": "phpcbf -p --standard=PSR2 src/ -v"
   },
   "minimum-stability": "dev",
   "prefer-stable": true
