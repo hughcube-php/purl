@@ -11,7 +11,7 @@ class Url implements UriInterface
      * @var int[]
      */
     private $schemes = [
-        'http' => 80,
+        'http'  => 80,
         'https' => 443,
     ];
     /**
@@ -50,7 +50,7 @@ class Url implements UriInterface
     /**
      * 获取实例.
      *
-     * @param  null|UriInterface  $url
+     * @param null|UriInterface $url
      *
      * @return static
      */
@@ -60,7 +60,8 @@ class Url implements UriInterface
     }
 
     /**
-     * @param  string  $url
+     * @param string $url
+     *
      * @return Url|null
      */
     public static function parse(string $url)
@@ -69,13 +70,14 @@ class Url implements UriInterface
             return static::instance($url);
         } catch (\Throwable $exception) {
         }
+
         return null;
     }
 
     /**
      * Url constructor.
      *
-     * @param  null|string|string[]|UriInterface  $url
+     * @param null|string|string[]|UriInterface $url
      */
     final protected function __construct($url = null)
     {
@@ -91,7 +93,7 @@ class Url implements UriInterface
     /**
      * 解析 Psr 标准库的url.
      *
-     * @param  UriInterface  $url
+     * @param UriInterface $url
      *
      * @return $this
      */
@@ -107,13 +109,14 @@ class Url implements UriInterface
         $user = explode(':', $user);
         $this->user = (is_array($user) && isset($user[0])) ? $user[0] : null;
         $this->pass = (is_array($user) && isset($user[1])) ? $user[1] : null;
+
         return $this;
     }
 
     /**
      * 解析字符串url.
      *
-     * @param  string  $url
+     * @param string $url
      *
      * @return $this
      */
@@ -125,13 +128,14 @@ class Url implements UriInterface
         /** @var string[] $parts */
         $parts = parse_url($url);
         $this->parseArrayUrl($parts);
+
         return $this;
     }
 
     /**
      * 解析数组url.
      *
-     * @param  string[]|int[]  $parts
+     * @param string[]|int[] $parts
      *
      * @return $this
      */
@@ -145,13 +149,14 @@ class Url implements UriInterface
         $this->path = isset($parts['path']) ? $parts['path'] : null;
         $this->query = isset($parts['query']) ? $parts['query'] : null;
         $this->fragment = isset($parts['fragment']) ? $parts['fragment'] : null;
+
         return $this;
     }
 
     /**
      * 填充 Psr 标准库的url.
      *
-     * @param  UriInterface  $url
+     * @param UriInterface $url
      *
      * @return UriInterface
      */
@@ -191,6 +196,7 @@ class Url implements UriInterface
         if ($this->isNonStandardPort() && !empty($port)) {
             $authority = "{$authority}:{$port}";
         }
+
         return $authority;
     }
 
@@ -207,6 +213,7 @@ class Url implements UriInterface
         if (!empty($pass)) {
             $userInfo = "{$userInfo}:{$pass}";
         }
+
         return $userInfo;
     }
 
@@ -247,6 +254,7 @@ class Url implements UriInterface
             return $this->port;
         }
         $scheme = $this->getScheme();
+
         return isset($this->schemes[$scheme]) ? $this->schemes[$scheme] : null;
     }
 
@@ -258,6 +266,7 @@ class Url implements UriInterface
         if (empty($this->path)) {
             return '';
         }
+
         return '/' === substr($this->path, 0, 1) ? $this->path : "/{$this->path}";
     }
 
@@ -281,33 +290,36 @@ class Url implements UriInterface
         if (!empty($query)) {
             parse_str($query, $queryArray);
         }
+
         return is_array($queryArray) ? $queryArray : [];
     }
 
     /**
      * 是否存在query的key.
      *
-     * @param  string  $key
+     * @param string $key
      *
      * @return bool
      */
     public function hasQueryKey($key)
     {
         $queryArray = $this->getQueryArray();
+
         return array_key_exists($key, $queryArray);
     }
 
     /**
      * 是否存在query的key.
      *
-     * @param  string  $key
-     * @param  mixed  $default
+     * @param string $key
+     * @param mixed  $default
      *
      * @return array|string
      */
     public function getQueryValue($key, $default = null)
     {
         $queryArray = $this->getQueryArray();
+
         return array_key_exists($key, $queryArray) ? $queryArray[$key] : $default;
     }
 
@@ -347,6 +359,7 @@ class Url implements UriInterface
         if (!empty($fragment)) {
             $url = "{$url}#{$fragment}";
         }
+
         return $url;
     }
 
@@ -357,6 +370,7 @@ class Url implements UriInterface
     {
         $new = clone $this;
         $new->scheme = $scheme;
+
         return $new;
     }
 
@@ -368,6 +382,7 @@ class Url implements UriInterface
         $new = clone $this;
         $new->user = $user;
         $new->pass = $password;
+
         return $new;
     }
 
@@ -378,6 +393,7 @@ class Url implements UriInterface
     {
         $new = clone $this;
         $new->host = $host;
+
         return $new;
     }
 
@@ -388,6 +404,7 @@ class Url implements UriInterface
     {
         $new = clone $this;
         $new->port = $port;
+
         return $new;
     }
 
@@ -398,6 +415,7 @@ class Url implements UriInterface
     {
         $new = clone $this;
         $new->path = $path;
+
         return $new;
     }
 
@@ -408,13 +426,14 @@ class Url implements UriInterface
     {
         $new = clone $this;
         $new->query = $query;
+
         return $new;
     }
 
     /**
      * Return an instance with the specified query array.
      *
-     * @param  array  $queryArray
+     * @param array $queryArray
      *
      * @return static
      */
@@ -426,7 +445,7 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value removed.
      *
-     * @param  string|int  $key
+     * @param string|int $key
      *
      * @return static
      */
@@ -436,14 +455,15 @@ class Url implements UriInterface
         if (isset($queryArray[$key])) {
             unset($queryArray[$key]);
         }
+
         return $this->withQueryArray($queryArray);
     }
 
     /**
      * Create a new URI with a specific query string value.
      *
-     * @param  string  $key
-     * @param  string|int  $value
+     * @param string     $key
+     * @param string|int $value
      *
      * @return static
      */
@@ -451,6 +471,7 @@ class Url implements UriInterface
     {
         $queryArray = $this->getQueryArray();
         $queryArray[$key] = $value;
+
         return $this->withQueryArray($queryArray);
     }
 
@@ -461,13 +482,15 @@ class Url implements UriInterface
     {
         $new = clone $this;
         $new->fragment = $fragment;
+
         return $new;
     }
 
     /**
-     * Check if host is matched
+     * Check if host is matched.
      *
-     * @param  string  $pattern
+     * @param string $pattern
+     *
      * @return bool
      */
     public function matchHost($pattern)
@@ -510,6 +533,7 @@ class Url implements UriInterface
         if (!$this->host || !$this->port) {
             return false;
         }
+
         return !isset($this->schemes[$this->scheme])
             || $this->port !== $this->schemes[$this->scheme];
     }
@@ -517,7 +541,7 @@ class Url implements UriInterface
     /**
      * is url string.
      *
-     * @param  mixed  $url
+     * @param mixed $url
      *
      * @return bool
      */
