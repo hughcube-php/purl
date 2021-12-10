@@ -60,6 +60,20 @@ class Url implements UriInterface
     }
 
     /**
+     * @param  string  $url
+     * @return Url|null
+     */
+    public static function parse(string $url)
+    {
+        try {
+            return static::instance($url);
+        } catch (\Throwable $exception) {
+        }
+
+        return null;
+    }
+
+    /**
      * Url constructor.
      *
      * @param null|string|string[]|UriInterface $url
