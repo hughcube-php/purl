@@ -50,7 +50,7 @@ class Url implements UriInterface
     /**
      * 获取实例.
      *
-     * @param null|UriInterface $url
+     * @param mixed $url
      *
      * @return static
      */
@@ -60,11 +60,11 @@ class Url implements UriInterface
     }
 
     /**
-     * @param string $url
+     * @param mixed $url
      *
      * @return Url|null
      */
-    public static function parse(string $url)
+    public static function parse($url)
     {
         try {
             return static::instance($url);
