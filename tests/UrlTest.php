@@ -2,11 +2,13 @@
 
 namespace HughCube\PUrl\Tests;
 
+use Exception;
 use HughCube\PUrl\Exceptions\ExceptionInterface;
 use HughCube\PUrl\Exceptions\InvalidArgumentException;
 use HughCube\PUrl\Url;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UriInterface;
+use Throwable;
 
 class UrlTest extends TestCase
 {
@@ -22,12 +24,14 @@ class UrlTest extends TestCase
 
         try {
             Url::instance('php.net');
-        } catch (\Exception $exception) {
-        } catch (\Throwable $exception) {
+        } catch (Exception $exception) {
+        } catch (Throwable $exception) {
         }
         $this->assertInstanceOf(ExceptionInterface::class, $exception);
         $this->assertInstanceOf(InvalidArgumentException::class, $exception);
         $this->assertInstanceOf(\InvalidArgumentException::class, $exception);
+
+        $this->assertNull(Url::parse('php.net'));
     }
 
     /**
@@ -37,6 +41,9 @@ class UrlTest extends TestCase
     {
         $url = Url::instance($string);
         $this->assertEquals($string, $url->toString());
+
+        $this->assertInstanceOf(Url::class, Url::parse($url));
+        $this->assertSame($url->toString(), Url::parse($url)->toString());
     }
 
     /**
@@ -47,6 +54,9 @@ class UrlTest extends TestCase
         $url = Url::instance($string);
         $url = Url::instance($url);
         $this->assertEquals($string, $url->toString());
+
+        $this->assertInstanceOf(Url::class, Url::parse($url));
+        $this->assertSame($url->toString(), Url::parse($url)->toString());
     }
 
     /**
@@ -57,6 +67,9 @@ class UrlTest extends TestCase
         $parts = parse_url($string);
         $url = Url::instance($parts);
         $this->assertEquals($string, $url->toString());
+
+        $this->assertInstanceOf(Url::class, Url::parse($url));
+        $this->assertSame($url->toString(), Url::parse($url)->toString());
     }
 
     /**
