@@ -67,7 +67,10 @@ class Url implements UriInterface
     public static function parse($url)
     {
         try {
-            return static::instance($url);
+            $url = static::instance($url);
+            if ($url instanceof self && static::isUrlString($url->toString())) {
+                return $url;
+            }
         } catch (\Throwable $exception) {
         }
 
