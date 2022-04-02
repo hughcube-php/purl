@@ -105,6 +105,8 @@ class UrlTest extends TestCase
             Url::instance(parse_url(Url::instance($string)->toString())),
         ] as $url
         ) {
+            /** @var Url $url */
+
             $this->assertEquals($string, $url->toString());
             $this->assertEquals($string, strval($url));
             $this->assertEquals($scheme, $url->getScheme());
@@ -119,6 +121,9 @@ class UrlTest extends TestCase
             $this->assertEquals($query, $url->getQuery());
             $this->assertEquals($queryArray, $url->getQueryArray());
             $this->assertEquals($fragment, $url->getFragment());
+
+            $this->assertInstanceOf(Url::class, $url->withSortQuery());
+            $this->assertIsString($url->getRawQuery());
         }
     }
 
