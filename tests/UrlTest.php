@@ -106,7 +106,6 @@ class UrlTest extends TestCase
         ] as $url
         ) {
             /** @var Url $url */
-
             $this->assertEquals($string, $url->toString());
             $this->assertEquals($string, strval($url));
             $this->assertEquals($scheme, $url->getScheme());
