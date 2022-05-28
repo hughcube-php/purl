@@ -4,6 +4,7 @@ namespace HughCube\PUrl;
 
 use HughCube\PUrl\Exceptions\InvalidArgumentException;
 use Psr\Http\Message\UriInterface;
+use Throwable;
 
 class Url implements UriInterface
 {
@@ -62,7 +63,7 @@ class Url implements UriInterface
     /**
      * @param  mixed  $url
      *
-     * @return Url|null
+     * @return static|null
      */
     public static function parse($url)
     {
@@ -71,7 +72,7 @@ class Url implements UriInterface
             if ($url instanceof self && static::isUrlString($url->toString())) {
                 return $url;
             }
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
         }
 
         return null;
@@ -258,7 +259,7 @@ class Url implements UriInterface
         }
         $scheme = $this->getScheme();
 
-        return isset($this->schemes[$scheme]) ? $this->schemes[$scheme] : null;
+        return $this->schemes[$scheme] ?? null;
     }
 
     /**
