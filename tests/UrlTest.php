@@ -122,7 +122,7 @@ class UrlTest extends TestCase
             $this->assertEquals($fragment, $url->getFragment());
 
             $this->assertInstanceOf(Url::class, $url->withSortQuery());
-            $this->assertIsString($url->getRawQuery());
+            $this->assertTrue(is_string($url->getRawQuery()));
         }
     }
 
