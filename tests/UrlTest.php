@@ -193,6 +193,6 @@ class UrlTest extends TestCase
         $this->assertSame('php', $url->getExtension());
 
         $url = Url::instance('https://www.google.com/search.php?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
-        $this->assertSame('.php', $url->getExtension(true));
+        $this->assertSame('.php', $url->getExtension('.'));
     }
 }

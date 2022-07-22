@@ -583,7 +583,7 @@ class Url implements UriInterface
         return false !== filter_var($url, FILTER_VALIDATE_URL);
     }
 
-    public function getExtension($withPoint = false)
+    public function getExtension($prefix = '')
     {
         $path = $this->getPath();
         if (empty($path)) {
@@ -595,6 +595,6 @@ class Url implements UriInterface
             return null;
         }
 
-        return $withPoint ? ".$extension" : $extension;
+        return "{$prefix}{$extension}";
     }
 }
