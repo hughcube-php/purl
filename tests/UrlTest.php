@@ -183,4 +183,16 @@ class UrlTest extends TestCase
         $this->assertTrue($url->matchHost('*google*'));
         $this->assertTrue($url->matchHost('*.google.com|*.baidu.com'));
     }
+
+    public function testGetExtension()
+    {
+        $url = Url::instance('https://www.google.com/search?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertNull($url->getExtension());
+
+        $url = Url::instance('https://www.google.com/search.php?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('php', $url->getExtension());
+
+        $url = Url::instance('https://www.google.com/search.php?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('.php', $url->getExtension(true));
+    }
 }

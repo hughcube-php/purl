@@ -12,7 +12,7 @@ class Url implements UriInterface
      * @var int[]
      */
     private $schemes = [
-        'http'  => 80,
+        'http' => 80,
         'https' => 443,
     ];
     /**
@@ -51,7 +51,7 @@ class Url implements UriInterface
     /**
      * 获取实例.
      *
-     * @param mixed $url
+     * @param  mixed  $url
      *
      * @return static
      */
@@ -61,7 +61,7 @@ class Url implements UriInterface
     }
 
     /**
-     * @param mixed $url
+     * @param  mixed  $url
      *
      * @return static|null
      */
@@ -81,7 +81,7 @@ class Url implements UriInterface
     /**
      * Url constructor.
      *
-     * @param null|string|string[]|UriInterface $url
+     * @param  null|string|string[]|UriInterface  $url
      */
     final protected function __construct($url = null)
     {
@@ -97,7 +97,7 @@ class Url implements UriInterface
     /**
      * 解析 Psr 标准库的url.
      *
-     * @param UriInterface $url
+     * @param  UriInterface  $url
      *
      * @return $this
      */
@@ -120,7 +120,7 @@ class Url implements UriInterface
     /**
      * 解析字符串url.
      *
-     * @param string $url
+     * @param  string  $url
      *
      * @return $this
      */
@@ -139,7 +139,7 @@ class Url implements UriInterface
     /**
      * 解析数组url.
      *
-     * @param string[]|int[] $parts
+     * @param  string[]|int[]  $parts
      *
      * @return $this
      */
@@ -160,7 +160,7 @@ class Url implements UriInterface
     /**
      * 填充 Psr 标准库的url.
      *
-     * @param UriInterface $url
+     * @param  UriInterface  $url
      *
      * @return UriInterface
      */
@@ -301,7 +301,7 @@ class Url implements UriInterface
     /**
      * 是否存在query的key.
      *
-     * @param string $key
+     * @param  string  $key
      *
      * @return bool
      */
@@ -315,8 +315,8 @@ class Url implements UriInterface
     /**
      * 是否存在query的key.
      *
-     * @param string $key
-     * @param mixed  $default
+     * @param  string  $key
+     * @param  mixed  $default
      *
      * @return array|string
      */
@@ -437,7 +437,7 @@ class Url implements UriInterface
     /**
      * Return an instance with the specified query array.
      *
-     * @param array $queryArray
+     * @param  array  $queryArray
      *
      * @return static
      */
@@ -449,7 +449,7 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value removed.
      *
-     * @param string|int $key
+     * @param  string|int  $key
      *
      * @return static
      */
@@ -466,8 +466,8 @@ class Url implements UriInterface
     /**
      * Create a new URI with a specific query string value.
      *
-     * @param string     $key
-     * @param string|int $value
+     * @param  string  $key
+     * @param  string|int  $value
      *
      * @return static
      */
@@ -491,8 +491,8 @@ class Url implements UriInterface
     }
 
     /**
-     * @param int $type
-     * @param int $flags
+     * @param  int  $type
+     * @param  int  $flags
      *
      * @return static
      */
@@ -522,7 +522,7 @@ class Url implements UriInterface
     /**
      * Check if host is matched.
      *
-     * @param string $pattern
+     * @param  string  $pattern
      *
      * @return bool
      */
@@ -574,12 +574,27 @@ class Url implements UriInterface
     /**
      * is url string.
      *
-     * @param mixed $url
+     * @param  mixed  $url
      *
      * @return bool
      */
     public static function isUrlString($url)
     {
         return false !== filter_var($url, FILTER_VALIDATE_URL);
+    }
+
+    public function getExtension($withPoint = false)
+    {
+        $path = $this->getPath();
+        if (empty($path)) {
+            return null;
+        }
+
+        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        if (empty($extension)) {
+            return null;
+        }
+
+        return $withPoint ? ".$extension" : $extension;
     }
 }
