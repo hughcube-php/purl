@@ -597,4 +597,34 @@ class Url implements UriInterface
 
         return "{$prefix}{$extension}";
     }
+
+    public function getFilename()
+    {
+        $path = $this->getPath();
+        if (empty($path)) {
+            return null;
+        }
+
+        $filename = pathinfo($path, PATHINFO_FILENAME);
+        if (empty($filename)) {
+            return null;
+        }
+
+        return $filename;
+    }
+
+    public function getBasename()
+    {
+        $path = $this->getPath();
+        if (empty($path)) {
+            return null;
+        }
+
+        $basename = pathinfo($path, PATHINFO_BASENAME);
+        if (empty($basename)) {
+            return null;
+        }
+
+        return $basename;
+    }
 }

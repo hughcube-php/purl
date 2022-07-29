@@ -195,4 +195,34 @@ class UrlTest extends TestCase
         $url = Url::instance('https://www.google.com/search.php?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
         $this->assertSame('.php', $url->getExtension('.'));
     }
+
+    public function testGetFilename()
+    {
+        $url = Url::instance('https://www.google.com/search/?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('search', $url->getFilename());
+
+        $url = Url::instance('https://www.google.com/search?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('search', $url->getFilename());
+
+        $url = Url::instance('https://www.google.com/search.php?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('search', $url->getFilename());
+
+        $url = Url::instance('https://www.google.com/search.inc.php?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('search.inc', $url->getFilename());
+    }
+
+    public function testGetBasename()
+    {
+        $url = Url::instance('https://www.google.com/search/?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('search', $url->getBasename());
+
+        $url = Url::instance('https://www.google.com/search?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('search', $url->getBasename());
+
+        $url = Url::instance('https://www.google.com/search.php?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('search.php', $url->getBasename());
+
+        $url = Url::instance('https://www.google.com/search.inc.php?q=test&oq=test&sourceid=chrome&ie=UTF-8#test');
+        $this->assertSame('search.inc.php', $url->getBasename());
+    }
 }
