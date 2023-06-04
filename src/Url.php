@@ -11,26 +11,26 @@ class Url implements UriInterface
     /**
      * @var int[]
      */
-    private array $schemes = [
+    private $schemes = [
         'http' => 80,
         'https' => 443,
     ];
 
-    private ?string $scheme = null;
+    private $scheme = null;
 
-    private ?string $host = null;
+    private $host = null;
 
-    private ?int $port = null;
+    private $port = null;
 
-    private ?string $user = null;
+    private $user = null;
 
-    private ?string $pass = null;
+    private $pass = null;
 
-    private ?string $path = null;
+    private $path = null;
 
-    private ?string $query = null;
+    private $query = null;
 
-    private ?string $fragment = null;
+    private $fragment = null;
 
     /**
      * 获取实例.
@@ -317,7 +317,7 @@ class Url implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withScheme($scheme): Url
+    public function withScheme($scheme): UriInterface
     {
         $new = clone $this;
         $new->scheme = $scheme;
@@ -329,7 +329,7 @@ class Url implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withUserInfo($user, $password = null): Url
+    public function withUserInfo($user, $password = null): UriInterface
     {
         $new = clone $this;
         $new->user = $user;
@@ -342,7 +342,7 @@ class Url implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withHost($host): Url
+    public function withHost($host): UriInterface
     {
         $new = clone $this;
         $new->host = $host;
@@ -354,7 +354,7 @@ class Url implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withPort($port): Url
+    public function withPort($port): UriInterface
     {
         $new = clone $this;
         $new->port = $port;
@@ -366,7 +366,7 @@ class Url implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withPath($path): Url
+    public function withPath($path): UriInterface
     {
         $new = clone $this;
         $new->path = $path;
@@ -378,7 +378,7 @@ class Url implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withQuery($query): Url
+    public function withQuery($query): UriInterface
     {
         $new = clone $this;
         $new->query = $query;
@@ -425,7 +425,7 @@ class Url implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withFragment($fragment): Url
+    public function withFragment($fragment): UriInterface
     {
         $new = clone $this;
         $new->fragment = $fragment;
