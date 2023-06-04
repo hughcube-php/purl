@@ -1,38 +1,38 @@
 {
-  "name": "hughcube/purl",
-  "description": "url",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "hugh.li",
-      "email": "hugh.li@foxmail.com"
-    }
-  ],
-  "require": {
-    "php": ">=7.0",
-    "psr/http-message": "^1.0"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "*",
-    "squizlabs/php_codesniffer": "*",
-    "phpstan/phpstan": "*"
-  },
-  "autoload": {
-    "psr-4": {
-      "HughCube\\PUrl\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "HughCube\\PUrl\\Tests\\": "tests"
-    }
-  },
-  "scripts": {
-    "test": "phpunit --verbose --coverage-clover=coverage.clover",
-    "phpstan": "phpstan analyse -vvv",
-    "check-style": "phpcs -p --standard=PSR2 src/ -v",
-    "fix-style": "phpcbf -p --standard=PSR2 src/ -v"
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "name": "hughcube/purl",
+    "description": "url",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hugh.li",
+            "email": "hugh.li@foxmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "psr/http-message": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "squizlabs/php_codesniffer": "*",
+        "phpstan/phpstan": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "HughCube\\PUrl\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HughCube\\PUrl\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "phpstan": "phpstan analyse -vvv",
+        "check-style": "phpcs -p --standard=PSR2 src/ -v",
+        "fix-style": "phpcbf -p --standard=PSR2 src/ -v"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

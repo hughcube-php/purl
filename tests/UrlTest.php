@@ -24,8 +24,7 @@ class UrlTest extends TestCase
 
         try {
             Url::instance('php.net');
-        } catch (Exception $exception) {
-        } catch (Throwable $exception) {
+        } catch (Exception|Throwable $exception) {
         }
         $this->assertInstanceOf(ExceptionInterface::class, $exception);
         $this->assertInstanceOf(InvalidArgumentException::class, $exception);
@@ -126,10 +125,7 @@ class UrlTest extends TestCase
         }
     }
 
-    /**
-     * @return array
-     */
-    public function dataProviderUrl()
+    public static function dataProviderUrl(): array
     {
         return [
             [
