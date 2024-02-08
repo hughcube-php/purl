@@ -462,23 +462,38 @@ class Url implements UriInterface
     /**
      * Check if host is matched.
      */
-    public function matchHost($pattern): bool
+    public function matchHost(...$patterns): bool
     {
-        if (empty($pattern) || empty($this->getHost())) {
+        if (empty($this->getHost())) {
             return false;
         }
 
-        if ($pattern == $this->getHost()) {
-            return true;
+        foreach ($patterns as $pattern) {
+            if ($pattern == $this->getHost()) {
+                return true;
+            }
+
+            $pattern = preg_quote($pattern, '#');
+            $pattern = str_replace('\*', '.*', $pattern);
+            $pattern = str_replace('\|', '|', $pattern);
+            $pattern = '#^(' . $pattern . ')\z#u';
+
+            if (1 == preg_match($pattern, $this->getHost())) {
+                return true;
+            }
         }
 
-        $pattern = preg_quote($pattern, '#');
-        $pattern = str_replace('\*', '.*', $pattern);
-        $pattern = str_replace('\|', '|', $pattern);
+        return false;
+    }
 
-        $pattern = '#^(' . $pattern . ')\z#u';
+    public function isIp(): bool
+    {
+        return false !== filter_var($this->getHost(), FILTER_VALIDATE_IP);
+    }
 
-        return 1 == preg_match($pattern, $this->getHost());
+    public function isLocalhost(): bool
+    {
+        return in_array($this->getHost(), ['localhost', '127.0.0.1'], true);
     }
 
     /**
